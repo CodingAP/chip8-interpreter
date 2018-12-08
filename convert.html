@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="file" id="files">
+	<script type="text/javascript">
+		var fileSelected = document.getElementById('files');
+		fileSelected.addEventListener('change', function (e) {
+		    var fileTobeRead = fileSelected.files[0];
+		    var fileReader = new FileReader(); 
+		    fileReader.onload = function (e) {
+		    	var cleanedBytes = fileReader.result.replace(/(\r\n\t|\n|\r\t)/gm, " ");
+				var bytes = cleanedBytes.split(' ');
+				for (var i = 0; i < bytes.length; i++) {
+					console.log(parseInt(bytes[i], 2).toString(16));
+				}
+		   	} 
+		    fileReader.readAsText(fileTobeRead); 
+		}, false);
+	</script>
+</body>
+</html>

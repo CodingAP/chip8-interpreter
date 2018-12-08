@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chip-8 Emulator</title>
+	<style type="text/css">
+		td {
+			padding: 10px;
+		}
+
+		textarea {
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="emu-canvas" width="640" height="320" style="border: 1px solid black;"></canvas>
+	<p>Load ROM: <input type="file" name="romloader" id="files">
+	<p>Foreground Color: <input id="fpicker" value="#FFFFFF" onchange="changeColor(0)" type="color" name="picker"></p>
+	<p>Background Color: <input id="bpicker" value="#000000" onchange="changeColor(1)" type="color" name="picker"></p>
+	<table id="keys">
+		<tr>
+			<td id="k0">1</td>
+			<td id="k1">2</td>
+			<td id="k2">3</td>
+			<td id="k3">4</td>
+		</tr>
+		<tr>
+			<td id="k4">Q</td>
+			<td id="k5">W</td>
+			<td id="k6">E</td>
+			<td id="k7">R</td>
+		</tr>
+		<tr>
+			<td id="k8">A</td>
+			<td id="k9">S</td>
+			<td id="k10">D</td>
+			<td id="k11">F</td>
+		</tr>
+		<tr>
+			<td id="k12">Z</td>
+			<td id="k13">X</td>
+			<td id="k14">C</td>
+			<td id="k15">V</td>
+		</tr>
+	</table>
+	<p>Enable/Disable Debugger: <input type="checkbox" id="debug-checker" name="isDebug" checked="true"></p>
+	<div id="debugger">
+		<table id="registers">
+			<tr>
+				<th>Register:</th>
+				<th>0</th>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+				<th>4</th>
+				<th>5</th>
+				<th>6</th>
+				<th>7</th>
+				<th>8</th>
+				<th>9</th>
+				<th>A</th>
+				<th>B</th>
+				<th>C</th>
+				<th>D</th>
+				<th>E</th>
+				<th>F</th>
+				<th>I</th>
+			</tr>
+			<tr>
+				<th>Hex Value: </th>
+				<td id="r0">0</td>
+				<td id="r1">0</td>
+				<td id="r2">0</td>
+				<td id="r3">0</td>
+				<td id="r4">0</td>
+				<td id="r5">0</td>
+				<td id="r6">0</td>
+				<td id="r7">0</td>
+				<td id="r8">0</td>
+				<td id="r9">0</td>
+				<td id="r10">0</td>
+				<td id="r11">0</td>
+				<td id="r12">0</td>
+				<td id="r13">0</td>
+				<td id="r14">0</td>
+				<td id="r15">0</td>
+				<td id="rI">0</td>
+			</tr>
+			<tr>
+				<th>Decimal Value: </th>
+				<td id="a0">0</td>
+				<td id="a1">0</td>
+				<td id="a2">0</td>
+				<td id="a3">0</td>
+				<td id="a4">0</td>
+				<td id="a5">0</td>
+				<td id="a6">0</td>
+				<td id="a7">0</td>
+				<td id="a8">0</td>
+				<td id="a9">0</td>
+				<td id="a10">0</td>
+				<td id="a11">0</td>
+				<td id="a12">0</td>
+				<td id="a13">0</td>
+				<td id="a14">0</td>
+				<td id="a15">0</td>
+				<td id="aI">0</td>
+			</tr>
+		</table>
+		<p>Get Memory: <input type="text" id="memorySubmit"> <input type="button" onclick="debug1()" value="Submit"></p>
+		<p id="memoryAddress"></p>
+		<p>Dissassembled ROM: <textarea readonly="true" id="disassembled"></textarea></p>
+		<p>Current Program: <textarea readonly="true" id="program"></textarea></p>
+	</div>
+	<script src="classes.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>
